@@ -1,0 +1,26 @@
+<main>
+        <div class="container">
+            <!-- New post 1 -->
+            <article>
+                <h2>New Post Title 1</h2>
+                <p>This is the content of the new post 1.</p>
+            </article>
+            
+            <!-- New post 2 -->
+            <article>
+                <h2>New Post Title 2</h2>
+                <p>This is the content of the new post 2.</p>
+            </article>
+
+            <!-- Previous posts -->
+            <article>
+                <h2>Previous Post Title 1</h2>
+                <p>This is the content of the previous post 1.</p>
+            </article>
+
+            <article>
+                <h2>Previous Post Title 2</h2>
+                <p>This is the content of the previous post 2.</p>
+            </article>
+        </div>
+    </main>
