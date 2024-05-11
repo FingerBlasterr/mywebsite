@@ -50,6 +50,13 @@
         .post-footer a:hover {
             text-decoration: underline;
         }
+
+        .comment {
+            background-color: #f9f9f9;
+            border-radius: 4px;
+            padding: 8px;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
@@ -65,7 +72,6 @@
                     <li><a href="about.html">About</a></li>
                     <li><a href="projects.html">Projects</a></li>
                     <li><a href="contact.html">Contact</a></li>
-
                 </ul>
             </div>
         </div>
@@ -80,7 +86,7 @@
 
     <main>
         <div class="container">
-            <div class="post">
+            <div class="post" id="post-1">
                 <div class="post-header">
                     <h2>Starting Out</h2>
                     <p class="post-date">May 9, 2024</p> <!-- Date of the post -->
@@ -90,9 +96,11 @@
                     <!-- Additional content of the post -->
                 </div>
                 <div class="post-footer">
-                    <a href="#" class="post-like">Like</a>
-                    <a href="#" class="post-comment">Comment</a>
-                    <a href="#" class="post-share">Share</a>
+                    <button class="post-like" onclick="likePost('post-1')">Like</button>
+                    <button class="post-comment" onclick="commentPost('post-1')">Comment</button>
+                </div>
+                <div class="post-comments" id="post-comments-1">
+                    <!-- Comments will appear here -->
                 </div>
             </div>
             <!-- Repeat the structure for additional posts -->
@@ -104,5 +112,34 @@
             <p>&copy; 2024 My Blog. All rights reserved.</p>
         </div>
     </footer>
+
+    <script>
+        function likePost(postId) {
+            var likedPosts = JSON.parse(localStorage.getItem('likedPosts')) || {};
+            if (!likedPosts[postId]) {
+                var button = document.querySelector('#' + postId + ' .post-like');
+                var likesCount = parseInt(button.dataset.likes) || 0;
+                likesCount++;
+                button.dataset.likes = likesCount;
+                button.innerText = "Like (" + likesCount + ")";
+                likedPosts[postId] = true;
+                localStorage.setItem('likedPosts', JSON.stringify(likedPosts));
+            }
+        }
+
+        function commentPost(postId) {
+            var comment = prompt("Enter your comment:");
+            if (comment !== null && comment.trim() !== "") {
+                var postCommentsDiv = document.getElementById('post-comments-' + postId);
+                var commentDiv = document.createElement('div');
+                commentDiv.classList.add('comment');
+                commentDiv.innerHTML = '<p class="comment-content">' + comment + '</p>';
+                postCommentsDiv.appendChild(commentDiv);
+            }
+        }
+    </script>
 </body>
 </html>
+
+
+
